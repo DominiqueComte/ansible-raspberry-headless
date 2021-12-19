@@ -1,0 +1,19 @@
+---
+
+- name: check swap
+  slurp:
+    src: /proc/swaps
+  register: swap_status
+
+#- name: debug check
+#  debug:
+#    var: (swap_status.content | b64decode).splitlines() | length
+
+- name: Disable swap
+  shell: dphys-swapfile swapoff && dphys-swapfile uninstall && update-rc.d dphys-swapfile remove
+  ignore_errors: True
+  when: (swap_status.content | b64decode).splitlines() | length > 1
+
+- name: swapoff
+  shell: swapoff -a
+  when: (swap_status.content | b64decode).splitlines() | length > 1

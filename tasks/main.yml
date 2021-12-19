@@ -1,0 +1,27 @@
+---
+# tasks file for ansible-role-raspberry-headless
+
+- import_tasks: disable-audio.yml
+  tags:
+  - audio
+
+- import_tasks: disable-swap.yml
+  tags:
+  - swap
+
+- import_tasks: tmpfs.yml
+  tags:
+  - tmpfs
+
+- import_tasks: locale.yml
+  tags:
+  - locale
+
+- import_tasks: timezone.yml
+  tags:
+  - timezone
+
+- import_tasks: hostname.yml
+  tags:
+  - hostname
+

@@ -1,0 +1,7 @@
+---
+
+- name: Define hostname
+  hostname:
+    name: "{{inventory_hostname}}"
+  notify:
+    - reboot-host

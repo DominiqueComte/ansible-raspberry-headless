@@ -1,0 +1,29 @@
+---
+
+- name: remove audio comment in raspberry boot config
+  lineinfile:
+    dest: /boot/config.txt
+    regexp: '^# Enable audio.*'
+    state: absent
+
+- name: remove audio enabling line in raspberry boot config
+  lineinfile:
+    dest: /boot/config.txt
+    line: 'dtparam=audio=on'
+    state: absent
+  notify:
+    - reboot-host
+
+- name: add audio disabling line in raspberry boot config
+  lineinfile:
+    dest: /boot/config.txt
+    line: 'dtparam=audio=off'
+    state: present
+  notify:
+    - reboot-host
+
+- name: remove old audio disabling comments in raspberry boot config
+  lineinfile:
+    dest: /boot/config.txt
+    line: '# Disable audio'
+    state: absent
