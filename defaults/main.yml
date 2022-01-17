@@ -1,5 +1,5 @@
 ---
-# defaults file for ansible-role-raspberry-headless
+# defaults file for raspberrypi_headless
 
 # settings for locale task
 system_locale: "en_US.UTF-8"

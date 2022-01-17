@@ -1,5 +1,9 @@
 ---
-# tasks file for ansible-role-raspberry-headless
+# tasks file for raspberrypi_headless
+
+- name: identify boards
+  shell:
+    cmd: grep "^Model" /proc/cpuinfo
 
 - import_tasks: disable-audio.yml
   tags:
