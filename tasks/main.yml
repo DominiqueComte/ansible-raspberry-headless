@@ -2,8 +2,11 @@
 # tasks file for raspberrypi_headless
 
 - name: identify boards
-  shell:
-    cmd: grep "^Model" /proc/cpuinfo
+  command: grep "^Model" /proc/cpuinfo
+  register: board_model
+
+- name: print board model
+  debug: var=board_model.stdout
 
 - import_tasks: disable-audio.yml
   tags:
